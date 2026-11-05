@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Авито → Excel",
+  "version": "1.0.0",
+  "description": "Личный сбор объявлений с поиска Авито в Excel.",
+  "permissions": ["downloads"],
+  "host_permissions": ["https://www.avito.ru/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.avito.ru/*"],
+      "js": ["inject.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.avito.ru/*"],
+      "js": ["parse.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "Авито → Excel"
+  }
+}
